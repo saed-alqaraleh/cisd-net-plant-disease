@@ -1,5 +1,11 @@
 # Reproducing CISD-Net numerical results and regeneration
 
+**Citable frozen release:** [CISD-Net v1.0.0](https://github.com/saed-alqaraleh/cisd-net-plant-disease/releases/tag/v1.0.0)
+(software DOI: [10.5281/zenodo.24263471](https://doi.org/10.5281/zenodo.24263471)).
+For a precise replication of the archived software, check out the `v1.0.0`
+Git tag before executing the Tier 1 verification commands. Documentation
+updates made on `main` after publication do not change the tagged archive.
+
 ## Tier 1 — CPU evidence replay (no images, GPU or network required)
 
 Python 3.11 is recommended.
