@@ -99,6 +99,9 @@ against the original source data, code and recorded hashes.
 ## Why the 75.6 MB embedding NPZ is separate
 
 GitHub warns when tracked files exceed 50 MB; this research cache is kept
-outside the Git tree. Once the private repository is approved for release,
-attach it as a GitHub release asset or configure Git LFS if licensing
-permits. Do not create a fictitious download URL before the release exists.
+outside the Git tree and is **not required for the CPU evidence replay**.
+The cache is not included in the initial source release. Its redistribution
+is subject to clearance of the applicable third-party image/model terms.
+If an independently authorized copy is distributed later, verify its exact
+SHA-256 (above) before use. Without the cache, regenerate features using
+the upstream datasets and model distributions as explained in Tier 2B.

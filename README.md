@@ -8,11 +8,12 @@ parameterization for orthogonal pathology/background subspaces, a
 differentiable counterfactual pairing invariance objective, and
 validation-selected clutter-modulated split-conformal prediction sets.
 
-This repository is staged for a **private pre-submission audit**. It contains
-a complete CPU-replayable numerical evidence set for 99 archived evaluations
-(3 protocols × 11 configurations × 3 seeds), while raw images and pretrained
-weights must be obtained separately. Public release and DOI registration
-remain subject to final review.
+This research software includes 99 frozen evaluations (3 protocols ×
+11 configurations × 3 seeds), full-precision prediction records, split
+manifests and a self-contained offline verification workflow. The numerical
+replay uses only repository files. Raw plant images, pretrained backbone
+weights, trained model checkpoints and the optional embedding cache are
+not distributed in the source repository.
 
 ## Quick start: reproduce the archived numerical evidence
 
@@ -108,7 +109,7 @@ measurements (not inferable from the prediction NPZs alone).
 | `manifests/` | Two final split manifests, mapping decisions, source traceability records |
 | `predictions_full_precision/` | All 99 original full-precision per-run `.npz` archives |
 | `results/` | Frozen 99-run ledger and available NVIDIA L4 profiling evidence |
-| `docs/` | Data/model provenance and private pre-release checklist |
+| `docs/` | Data/model provenance and numerical verification scope |
 
 ## Evidence boundaries and licensing
 
@@ -131,10 +132,12 @@ See `CITATION.cff`. The software can be cited as:
   title        = {CISD-Net: Counterfactual Invariant Subspace Decomposition Network},
   author       = {Alqaraleh, Saed},
   year         = {2026},
-  version      = {1.0.0-rc1},
+  version      = {1.0.0},
   url          = {https://github.com/saed-alqaraleh/cisd-net-plant-disease}
 }
 ```
 
-A versioned Zenodo DOI must not be inserted until the public release exists
-and its correspondence with the publication is verified.
+For a persistent software citation, use the Zenodo DOI associated with the
+published `v1.0.0` release once it is available. The journal article DOI
+will be added separately after publication. Until then, cite the source
+repository and version in the BibTeX entry above.

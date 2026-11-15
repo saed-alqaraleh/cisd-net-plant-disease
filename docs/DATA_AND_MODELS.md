@@ -32,3 +32,23 @@ they are retained as provenance and do not change the final benchmark splits.
 Main evaluation cohorts: 2,185 PlantDoc targets (19 in-domain classes), and
 1,273 group-audited FieldPlant targets (6 primary classes). `targets.csv`
 contains all 3,721 target rows before the PlantDoc in-domain restriction.
+
+## Upstream licensing and distribution scope
+
+- PlantDoc object-detection dataset: source and attribution information are
+  available at https://github.com/pratikkayal/PlantDoc-Object-Detection-Dataset.
+  The dataset repository identifies a Creative Commons Attribution 4.0
+  license; however, the creators report that some original images were
+  collected from the web, so upstream image rights require independent care.
+- FieldPlant v11: upstream dataset and its stated CC BY 4.0 license are at
+  https://universe.roboflow.com/plant-disease-detection/fieldplant/dataset/11.
+- Frozen image encoders: see the model distributors at
+  https://huggingface.co/timm/vit_base_patch14_dinov2.lvd142m and
+  https://huggingface.co/timm/convnext_tiny.fb_in1k.
+  Verify the terms applicable to the exact model weights before redistribution.
+
+This repository releases original scientific software and research evaluation
+records; it does **not** redistribute third-party raw images or pretrained
+weights. The optional 75.6 MB frozen embedding cache is not included in the
+initial source release pending redistribution review. The published CPU
+verification pathway is fully usable without this cache.
