@@ -122,14 +122,14 @@ licensable, excluding upstream third-party rights. See [LICENSE](LICENSE),
 
 ## Citation
 
-Citation metadata is provisional until the article's complete author list,
-publication venue and DOI are approved. See `CITATION.cff`. A provisional
-BibTeX software citation is:
+**Sole author:** Saed Alqaraleh (Mutah University, Jordan; [ORCID](https://orcid.org/0000-0002-7146-3905)).
+The author is confirmed; the journal venue and article DOI remain pending.
+See `CITATION.cff`. The software can be cited as:
 
 ```bibtex
 @software{cisdnet_2026,
   title        = {CISD-Net: Counterfactual Invariant Subspace Decomposition Network},
-  author       = {{CISD-Net Research Contributors}},
+  author       = {Alqaraleh, Saed},
   year         = {2026},
   version      = {1.0.0-rc1},
   url          = {https://github.com/saed-alqaraleh/cisd-net-plant-disease}

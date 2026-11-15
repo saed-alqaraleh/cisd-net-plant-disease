@@ -6,7 +6,10 @@ type: software
 repository-code: "https://github.com/saed-alqaraleh/cisd-net-plant-disease"
 license: MIT
 authors:
-  - name: "CISD-Net research contributors"
+  - given-names: "Saed"
+    family-names: "Alqaraleh"
+    orcid: "https://orcid.org/0000-0002-7146-3905"
+    affiliation: "Department of Data Science and Artificial Intelligence, College of Information Technology, Mutah University"
 keywords:
   - plant disease recognition
   - counterfactual invariant learning

@@ -10,11 +10,12 @@ publication checks are complete.
 - [x] Confirm FP split has no repeated stem group across splits
 - [x] Check for hardcoded personal Drive paths and excluded experimental outputs
 - [x] Create the empty GitHub repository as **private**
-- [ ] Upload the exact vetted files in one initial commit and rerun checks on a fresh clone
+- [x] Upload the exact vetted files in one initial commit and rerun checks on a fresh clone
 - [ ] Confirm full training rerun on a compatible CPU/GPU installation with external datasets
 - [ ] Review data redistribution rights, including metadata and embedding-cache licensing
 - [ ] Verify whether missing NVIDIA L4 FP16 profiling log can be released
-- [ ] Replace provisional citation/contributor metadata with final paper-author metadata
+- [x] Confirm Saed Alqaraleh as the sole author in software citation metadata
+- [ ] Add the journal citation and DOI after publication details are finalized
 - [ ] Check manuscript/repository table and statistical reproducibility claims line by line
 - [ ] Approve public release; create GitHub release tag and link Zenodo archive
 
