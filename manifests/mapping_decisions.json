@@ -1,0 +1,58 @@
+{
+ "_note": "Decisions fixed by the author on 28 Sep 2026 WITHOUT expert review (pathologist did not respond). Basis per mapping below. Primary analyses use exact mappings only and do not depend on these decisions.",
+ "reviewer": {
+  "name": "none (no expert response)",
+  "affiliation": null,
+  "date": "2026-09-28",
+  "basis": "published precedent"
+ },
+ "approximate_mappings": {
+  "Bell_pepper leaf spot": false,
+  "Corn leaf blight": true,
+  "Tomato leaf yellow virus": true
+ },
+ "plantdoc_approximate_labels": [
+  "Bell_pepper leaf spot",
+  "Corn leaf blight",
+  "Tomato leaf yellow virus"
+ ],
+ "plantdoc_sparse_excluded": [
+  "Potato leaf",
+  "Tomato two spotted spider mites leaf"
+ ],
+ "fieldplant_map": {
+  "Corn Gray leaf spot": {
+   "pv_class": "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
+   "mapping": "exact"
+  },
+  "Corn rust leaf": {
+   "pv_class": "Corn_(maize)___Common_rust_",
+   "mapping": "exact"
+  },
+  "Corn Healthy": {
+   "pv_class": "Corn_(maize)___healthy",
+   "mapping": "exact"
+  },
+  "Tomato healthy": {
+   "pv_class": "Tomato___healthy",
+   "mapping": "exact"
+  },
+  "Tomato leaf mosaic virus": {
+   "pv_class": "Tomato___Tomato_mosaic_virus",
+   "mapping": "exact"
+  },
+  "Corn leaf blight": {
+   "pv_class": "Corn_(maize)___Northern_Leaf_Blight",
+   "mapping": "approximate"
+  },
+  "Tomato leaf yellow virus": {
+   "pv_class": "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+   "mapping": "approximate"
+  }
+ },
+ "basis": {
+  "Corn leaf blight": "ACCEPTED (precedent): Moupojou et al. 2024 (IEEE Access 12:102592, Fig. 11; co-author a plant pathologist) evaluate PlantVillage-trained classifiers on FieldPlant 'Corn leaf blight', i.e. treat it as PlantVillage Northern Leaf Blight, the only corn blight class in PlantVillage.",
+  "Tomato leaf yellow virus": "ACCEPTED (precedent): same source and figure include 'Tomato leaf yellow virus' as the PlantVillage TYLCV counterpart.",
+  "Bell_pepper leaf spot": "REJECTED (no verified precedent): 'leaf spot' is not specific to bacterial spot (Xanthomonas); excluded from all analyses."
+ }
+}

@@ -1,0 +1,100 @@
+{
+  "status": "MEASURED_ON_DEVICE",
+  "timestamp_utc": "2026-11-09T10:38:28.484514+00:00",
+  "device": "NVIDIA L4",
+  "is_physical_jetson_device": false,
+  "jetson_results": "OMITTED_NOT_MEASURED_ON_JETSON_DEVICE",
+  "cuda_version": "13.0",
+  "torch_version": "2.14.1+cu130",
+  "precision": "fp32",
+  "warmup_passes": 200,
+  "synchronized_passes": 500,
+  "head_only_configurations": {
+    "erm_cls": {
+      "batch1_latency_mean_ms": 0.3543,
+      "batch1_latency_std_ms": 0.0167,
+      "batch1_latency_median_ms": 0.3543,
+      "batch1_latency_p95_ms": 0.3697,
+      "batch1_latency_p99_ms": 0.426,
+      "batch32_latency_mean_ms": 0.3773,
+      "batch32_throughput_img_per_s": 84813.79,
+      "peak_vram_batch1_mib": 9.32,
+      "peak_vram_batch32_mib": 23.36
+    },
+    "convgem_next": {
+      "batch1_latency_mean_ms": 0.4063,
+      "batch1_latency_std_ms": 0.0184,
+      "batch1_latency_median_ms": 0.405,
+      "batch1_latency_p95_ms": 0.427,
+      "batch1_latency_p99_ms": 0.4547,
+      "batch32_latency_mean_ms": 0.4155,
+      "batch32_throughput_img_per_s": 77006.91,
+      "peak_vram_batch1_mib": 18.66,
+      "peak_vram_batch32_mib": 32.22
+    },
+    "mvpdr_proto": {
+      "batch1_latency_mean_ms": 0.5117,
+      "batch1_latency_std_ms": 0.0366,
+      "batch1_latency_median_ms": 0.5033,
+      "batch1_latency_p95_ms": 0.5724,
+      "batch1_latency_p99_ms": 0.6871,
+      "batch32_latency_mean_ms": 0.5295,
+      "batch32_throughput_img_per_s": 60432.27,
+      "peak_vram_batch1_mib": 18.41,
+      "peak_vram_batch32_mib": 23.19
+    },
+    "ablation_soft_ortho": {
+      "batch1_latency_mean_ms": 0.6685,
+      "batch1_latency_std_ms": 0.0207,
+      "batch1_latency_median_ms": 0.6625,
+      "batch1_latency_p95_ms": 0.7108,
+      "batch1_latency_p99_ms": 0.7547,
+      "batch32_latency_mean_ms": 0.6835,
+      "batch32_throughput_img_per_s": 46820.13,
+      "peak_vram_batch1_mib": 19.75,
+      "peak_vram_batch32_mib": 39.27
+    },
+    "ablation_stiefel_no_cpi": {
+      "batch1_latency_mean_ms": 1.4303,
+      "batch1_latency_std_ms": 0.0288,
+      "batch1_latency_median_ms": 1.4285,
+      "batch1_latency_p95_ms": 1.4633,
+      "batch1_latency_p99_ms": 1.5465,
+      "batch32_latency_mean_ms": 1.4391,
+      "batch32_throughput_img_per_s": 22236.65,
+      "peak_vram_batch1_mib": 22.61,
+      "peak_vram_batch32_mib": 40.77
+    },
+    "cisd_net_single": {
+      "batch1_latency_mean_ms": 1.3547,
+      "batch1_latency_std_ms": 0.0238,
+      "batch1_latency_median_ms": 1.3527,
+      "batch1_latency_p95_ms": 1.3907,
+      "batch1_latency_p99_ms": 1.4623,
+      "batch32_latency_mean_ms": 1.3819,
+      "batch32_throughput_img_per_s": 23156.59,
+      "peak_vram_batch1_mib": 20.52,
+      "peak_vram_batch32_mib": 29.8
+    },
+    "cisd_net_dualstream": {
+      "batch1_latency_mean_ms": 1.4124,
+      "batch1_latency_std_ms": 0.0251,
+      "batch1_latency_median_ms": 1.4111,
+      "batch1_latency_p95_ms": 1.4501,
+      "batch1_latency_p99_ms": 1.531,
+      "batch32_latency_mean_ms": 1.4234,
+      "batch32_throughput_img_per_s": 22481.01,
+      "peak_vram_batch1_mib": 22.61,
+      "peak_vram_batch32_mib": 40.52
+    }
+  },
+  "end_to_end_dinov2_convnext_cisd_net_dualstream": {
+    "batch1_latency_mean_ms": 13.57,
+    "batch1_latency_std_ms": 0.167,
+    "batch1_latency_p95_ms": 13.849,
+    "batch32_latency_mean_ms": 294.015,
+    "batch32_throughput_img_per_s": 108.84,
+    "peak_vram_batch1_mib": 470.65,
+    "peak_vram_batch32_mib": 908.47
+  }
+}

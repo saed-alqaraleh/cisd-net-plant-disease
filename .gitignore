@@ -1,0 +1,14 @@
+# Local staging and GPU-generated products
+/data/
+/outputs/
+/checkpoints/
+/release_assets/
+*.log
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+.DS_Store
+.ipynb_checkpoints/

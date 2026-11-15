@@ -1,0 +1,7 @@
+# Full extraction and training (Python 3.11); install a compatible CUDA PyTorch wheel
+numpy==1.26.4
+pandas==2.2.3
+Pillow==11.1.0
+torch==2.5.1
+torchvision==0.20.1
+timm==1.0.22
