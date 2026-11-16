@@ -29,8 +29,9 @@ Descriptions elsewhere must not substitute a claim of expert sign-off.
 Source inventory filenames ending in `_DRAFT` are frozen upstream filenames;
 they are retained as provenance and do not change the final benchmark splits.
 
-Main evaluation cohorts: 2,185 PlantDoc targets (19 in-domain classes), and
-1,273 group-audited FieldPlant targets (6 primary classes). `targets.csv`
+Main evaluation cohorts: 2,185 PlantDoc targets (24 evaluation classes), and
+1,273 FieldPlant targets (5 evaluation classes; partitions disjoint by export
+file stem, but not necessarily by perceptual duplicates). `targets.csv`
 contains all 3,721 target rows before the PlantDoc in-domain restriction.
 
 ## Upstream licensing and distribution scope

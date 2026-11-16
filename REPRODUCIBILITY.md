@@ -61,7 +61,8 @@ ledger, recomputes Top-1, Macro-F1, clutter Q1–Q4, AURCC, nominal-0.05
 split-conformal coverage and mean set sizes, replay thresholds, selected
 gamma and the exact LAC/modulated set matrices. All 11 × 3 × 3 runs are
 included, and the full 33-row aggregate table is printed. FieldPlant
-`stem_group` disjointness is also tested.
+FieldPlant partitions are disjoint by export file stem (`stem_group`);
+this does not establish perceptual-duplicate separation.
 
 **Scope distinction:** HSIC, Stiefel overlap and learned view gates are
 stored as scalars in the SHA-authenticated ledger, but the small prediction
@@ -84,6 +85,12 @@ This optional 10,000-resample percentile bootstrap is specified explicitly
 in the script. It is **not** claimed as the original manuscript's archived
 confidence-interval procedure, because the frozen 99-run ledger does not
 contain a matching bootstrap specification or stored CI endpoints.
+
+The v6 perceptual-hash audit identified 35 near-duplicate pairs, including
+19 cross-partition pairs affecting 10 FieldPlant test images. The v6
+conclusions persisted after excluding those images, as recorded in the
+supplied `analysis/numbers_v3.json`; reproducing the sensitivity analysis
+requires the optional earlier pHash manifest (see above).
 
 ## Mathematical attribution and implementation details
 
