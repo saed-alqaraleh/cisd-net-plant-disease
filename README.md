@@ -2,7 +2,9 @@
 
 **Reproducible frozen-backbone experiments for plant disease recognition under background clutter**
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24263471.svg)](https://doi.org/10.5281/zenodo.24263471)
+**Previously archived v1.0.0 release:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24263471.svg)](https://doi.org/10.5281/zenodo.24263471)
+
+**v1.0.1 source preparation:** contains the manuscript v6 reproducibility updates. Its version-specific Zenodo DOI has not yet been minted.
 
 CISD-Net is a research head trained on four 224×224 visual views extracted
 from PlantDoc and FieldPlant images. It combines a joint block-Cayley Stiefel
@@ -159,8 +161,9 @@ licensable, excluding upstream third-party rights. See [LICENSE](LICENSE),
 ## Citation
 
 **Sole author:** Saed Alqaraleh (Mutah University, Jordan; [ORCID](https://orcid.org/0000-0002-7146-3905)).
-The author is confirmed; the journal venue and article DOI remain pending.
-See `CITATION.cff`. The software can be cited as:
+The journal venue and article DOI remain pending. `CITATION.cff` identifies
+the prepared v1.0.1 source, whose Zenodo DOI will be assigned after publication.
+The following citation is for the **previously archived v1.0.0 software release**:
 
 ```bibtex
 @software{cisdnet_2026,

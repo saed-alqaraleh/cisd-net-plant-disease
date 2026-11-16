@@ -1,5 +1,9 @@
 # Reproducing CISD-Net numerical results and regeneration
 
+**v1.0.1 preparation:** This source includes the manuscript v6 table and figure
+regeneration workflow; the version-specific Zenodo DOI is pending. The
+previous v1.0.0 archive remains immutable.
+
 **Citable frozen release:** [CISD-Net v1.0.0](https://github.com/saed-alqaraleh/cisd-net-plant-disease/releases/tag/v1.0.0)
 (software DOI: [10.5281/zenodo.24263471](https://doi.org/10.5281/zenodo.24263471)).
 For a precise replication of the archived software, check out the `v1.0.0`
