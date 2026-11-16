@@ -85,6 +85,24 @@ in the script. It is **not** claimed as the original manuscript's archived
 confidence-interval procedure, because the frozen 99-run ledger does not
 contain a matching bootstrap specification or stored CI endpoints.
 
+## Mathematical attribution and implementation details
+
+The joint frame uses the **Stiefel Cayley transform of Jauch, Hoff and
+Dunson (2020, *Bernoulli* 26(2):1560–1586,
+https://doi.org/10.3150/19-BEJ1176)**, rather than a newly invented
+Cayley transform. The largest measured cross-block overlap over all 36
+joint-frame runs is `2.0220069661553594e-15` (below `2.1e-15`).
+
+The classifier head is trained with **Adam (coupled L2 on W only)**;
+its `W` penalty is added to the loss and its gradient, not applied as
+separate decoupled decay. The background swap updates
+`h_swap = h + 0.5 * (delta_z_B @ U_B.T)`; background coordinates are moved
+toward a paired sample, not replaced. Each clutter probe minimises its own
+squared error plus a `1e-3` L2 term, whereas the frame receives the
+adversarial `L_B - L_P` gradient. The four-view GeM baseline uses exponent
+`2.25` after shifting each image's features by its minimum minus `1e-3`
+and adds the shift back afterward.
+
 ## Tier 2A — Regenerate experiment heads using verified frozen embeddings
 
 Install the pinned CPU/GPU research dependencies (PyTorch CUDA build selected

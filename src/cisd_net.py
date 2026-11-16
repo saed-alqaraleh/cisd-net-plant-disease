@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """CISD-Net model, training objectives and numerical evaluation primitives.
 
-Extracted verbatim from the frozen v3 experiment implementation.
+Numerical code preserved from the frozen v3 implementation; v6 attribution comments added.
 """
 from __future__ import annotations
 import math
@@ -14,6 +14,8 @@ class JointStiefelCayleyTransform:
       U = (I_D - A) (I_D + A)^{-1} [I_K; 0]
     where A = [[S, -B^T], [B, 0]] is skew-symmetric (S = 0.5 * (S_raw - S_raw^T)).
     Guarantees ||U^T U - I_K||_F < 1e-13 and ||U_P^T U_B||_F < 1e-13 at every step.
+    The closed-form Stiefel Cayley transform is due to Jauch, Hoff, and Dunson
+    (2020, Bernoulli 26(2):1560-1586; doi:10.3150/19-BEJ1176).
     """
 
     def __init__(self, D: int, d_P: int, d_B: int, seed: int = 42, init_scale: float = 0.05):
@@ -320,6 +322,7 @@ class CISDNetV3Model:
             return X_views[:, 0, :], attn
         elif self.config_name == "gem_linear_baseline":
             attn = np.full((N, V), 1.0 / V, dtype=np.float64)
+            # Imagewise positive-domain shift; GeM exponent 2.25; restore shift below.
             shift = np.min(X_views, axis=(1, 2), keepdims=True) - 1e-3
             pos = X_views - shift
             pooled = np.mean(pos ** self.gem_p, axis=1) ** (1.0 / self.gem_p) + shift[:, 0, :]
@@ -399,6 +402,7 @@ class CISDNetV3Model:
         active_cpi = self.lambda_cpi if self.config_name != "ablation_stiefel_no_cpi" else 0.0
         perm = build_counterfactual_swap_permutation(clutter, y, identity_mode=cpi_identity_check)
         delta_z_B = z_B[perm] - z_B
+        # Move (do not replace) background coordinates toward the paired image (s=0.5).
         h_swap = h + self.swap_strength * (delta_z_B @ U_B.T)
         logits_swap = h_swap @ self.W_cls + self.b_cls[None, :]
         probs_swap = softmax_rows(logits_swap)
@@ -461,6 +465,7 @@ class CISDNetV3Model:
 
             d_err_P = err_P / N
             d_err_B = err_B / N
+            # Probes minimize their own squared errors + L2; frame uses L_B - L_P.
             grads["w_nuis_P"] = z_P.T @ d_err_P + 1e-3 * self.w_nuis_P
             grads["b_nuis_P"] = float(np.sum(d_err_P))
             grads["w_nuis_B"] = z_B.T @ d_err_B + 1e-3 * self.w_nuis_B

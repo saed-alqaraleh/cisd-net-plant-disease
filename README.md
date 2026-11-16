@@ -42,13 +42,38 @@ See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for full details and limitations.
 | Group-separation checks | FieldPlant `stem_group` does not span train/val/cal/test |
 | Seeds and initialization | 42, 108, 2026; random basis initialization; uniform `[0.25]×4` view gates |
 | Orthogonal subspace dimensions | `(dP,dB)=(64,16)` for 768-d; `(128,32)` for 1536-d |
-| Training | 40 epochs, AdamW, three LRs (0.0015/0.0040/0.0250), cosine decay (15% floor) |
+| Training | 40 full-batch Adam steps (coupled L2 on W only), three LRs (0.0015/0.0040/0.0250), cosine decay (15% floor) |
 | Fixed conformal alpha | 0.05; calibration-only threshold, validation-only gamma selection |
 | Source view count | 3,721 target images; 22,326 generated view records; 4 used for features |
 
 The score `clutter_raw` is measured from L2-normalized frozen DINOv2
 full-resize versus masked-resize embeddings. It is not a manually annotated
 background score.
+
+## Implementation details and attribution
+
+The pathology and background bases form two column blocks of one orthonormal
+Stiefel frame. The closed-form construction is **the Stiefel Cayley transform
+of Jauch, Hoff and Dunson (2020, *Bernoulli*, 26(2):1560–1586,
+[doi:10.3150/19-BEJ1176](https://doi.org/10.3150/19-BEJ1176))**;
+we do not claim the transform itself as a new mathematical invention.
+Across 36 runs using this joint Cayley frame, the archived maximum
+cross-block overlap is 2.0220069661553594e-15 (**below 2.1e-15**).
+Orthogonality of basis directions does not imply statistical independence.
+
+The background swap **moves** each image's background coordinates towards
+another image rather than replacing them:
+`h_swap = h + s * (delta_z_B @ U_B.T)`, with `s = 0.5`.
+The pathology/background clutter probes independently minimise their own
+squared errors, each with an L2 probe-weight term of 1e-3. The **frame**
+parameters descend on the opposing quantity `L_B - L_P`; the probes do not
+minimise this adversarial frame objective.
+
+The four-view **GeM** baseline shifts each image's embeddings into the
+positive domain by subtracting its minimum entry minus `1e-3`, pools
+using exponent `2.25`, and adds the shift back. Classifier weight `W` receives
+coupled L2 regularization in the loss/gradient; the Adam update does not use
+decoupled weight decay.
 
 ## Primary results
 

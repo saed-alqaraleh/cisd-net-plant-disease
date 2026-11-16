@@ -43,10 +43,10 @@ CONFIRMED_HYPERPARAMETERS = {
     "backbone_stream1": "vit_base_patch14_dinov2.lvd142m (768-d, frozen)",
     "backbone_stream2": "convnext_tiny.fb_in1k (768-d, frozen)",
     "initialization": "strictly_neutral_random_seed_only (zero_planted_bases, zero_logit_projection)",
-    "optimizer": "AdamW",
-    "adamw_beta1": 0.9,
-    "adamw_beta2": 0.999,
-    "adamw_eps": 1e-8,
+    "optimizer": "Adam (coupled L2 on W only)",
+    "adam_beta1": 0.9,
+    "adam_beta2": 0.999,
+    "adam_eps": 1e-8,
     "lr_schedule": "cosine_annealing_with_15pct_floor",
     "epochs": 40,
     "lr_cls": 0.0015,
@@ -504,9 +504,9 @@ def train_and_eval_one_run_v3(
     lr_cls = CONFIRMED_HYPERPARAMETERS["lr_cls"]
     lr_sub = CONFIRMED_HYPERPARAMETERS["lr_sub"]
     lr_gate = CONFIRMED_HYPERPARAMETERS["lr_gate"]
-    beta1 = CONFIRMED_HYPERPARAMETERS["adamw_beta1"]
-    beta2 = CONFIRMED_HYPERPARAMETERS["adamw_beta2"]
-    eps_adam = CONFIRMED_HYPERPARAMETERS["adamw_eps"]
+    beta1 = CONFIRMED_HYPERPARAMETERS["adam_beta1"]
+    beta2 = CONFIRMED_HYPERPARAMETERS["adam_beta2"]
+    eps_adam = CONFIRMED_HYPERPARAMETERS["adam_eps"]
 
     m_state: Dict[str, np.ndarray] = {}
     v_state: Dict[str, np.ndarray] = {}
