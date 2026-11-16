@@ -28,7 +28,7 @@ experiment ledger.
   evaluation metrics exactly; Stiefel overlap and HSIC matched up to
   numerical floating-point variation.
 
-- The v6 perceptual-hash audit identified 35 near-duplicate pairs (19 crossing
+- The perceptual-hash audit identified 35 near-duplicate pairs (19 crossing
   partitions, affecting 10 test images). The reported sensitivity after
   removing those images is archived in `analysis/numbers_v3.json` but cannot
   be independently rerun without its optional earlier pHash input.

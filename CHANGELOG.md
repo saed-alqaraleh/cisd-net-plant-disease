@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.0.1 — Manuscript v6 alignment
+## v1.0.1 — Reproducibility and documentation update
 
 - Added original table/figure regeneration script and frozen statistical reference JSON.
 - Introduced GitHub Actions checks for numerical consistency against the archived reference.

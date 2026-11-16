@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "CISD-Net v1.0.1, aligned with manuscript v6. Version-specific Zenodo DOI and journal article DOI are pending."
+message: "CISD-Net research software v1.0.1. The version-specific Zenodo DOI and journal article DOI are pending."
 title: "CISD-Net: Closed-Form Orthogonal Pathology–Background Decomposition Eliminates Subspace Leakage in Field Plant Disease Recognition"
 version: "1.0.1"
 type: software

@@ -7,7 +7,7 @@
       "orcid": "0000-0002-7146-3905"
     }
   ],
-  "description": "CISD-Net v1.0.1 research software aligned with manuscript v6. Includes original implementation, 99 frozen experimental prediction archives, numerical replay, and table/figure regeneration. The journal article DOI is pending.",
+  "description": "CISD-Net v1.0.1 research software. Includes original implementation, 99 frozen experimental prediction archives, numerical replay, table and figure regeneration, and expanded reproducibility documentation. The journal article DOI is pending.",
   "access_right": "open",
   "license": "MIT",
   "keywords": [

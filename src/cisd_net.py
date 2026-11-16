@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """CISD-Net model, training objectives and numerical evaluation primitives.
 
-Numerical code preserved from the frozen v3 implementation; v6 attribution comments added.
+Numerical code preserved from the frozen experiment implementation; bibliographic attribution comments added.
 """
 from __future__ import annotations
 import math

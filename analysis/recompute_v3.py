@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerates every number, table body and data figure of the CISD-Net manuscript from the
+"""Regenerates reported numeric summaries, six table bodies and two data figures from the
 v3 evidence archive (99 prediction archives, run ledger, split manifests). No model is run.
 Prediction archives are read member by member without unpickling; test images are aligned to the
 manifests by order, label and clutter score (verified below).

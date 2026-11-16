@@ -4,7 +4,7 @@
 
 **Previously archived v1.0.0 release:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24263471.svg)](https://doi.org/10.5281/zenodo.24263471)
 
-**v1.0.1 source preparation:** contains the manuscript v6 reproducibility updates. Its version-specific Zenodo DOI has not yet been minted.
+**Current code version: v1.0.1.** This update extends numerical reproducibility and documentation without changing the models or reported results. Its version-specific Zenodo DOI will be added after archival.
 
 CISD-Net is a research head trained on four 224×224 visual views extracted
 from PlantDoc and FieldPlant images. It combines a joint block-Cayley Stiefel
@@ -49,10 +49,10 @@ See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for full details and limitations.
 | Source view count | 3,721 target images; 22,326 generated view records; 4 used for features |
 
 FieldPlant partitions are disjoint by export file stem, but this is not
-perceptual-duplicate disjointness. The v6 perceptual-hash audit found
+perceptual-duplicate disjointness. The perceptual-hash audit found
 **35 near-duplicate pairs, including 19 across partitions, touching
 10 test images**. The FieldPlant conclusions were unchanged after excluding
-those 10 test images (see v6 manuscript and `analysis/numbers_v3.json`);
+those 10 test images (see `analysis/numbers_v3.json` and the corresponding manuscript analysis);
 independent re-execution of this sensitivity audit requires the optional
 earlier manifest containing perceptual hashes, not included here.
 
@@ -162,7 +162,7 @@ licensable, excluding upstream third-party rights. See [LICENSE](LICENSE),
 
 **Sole author:** Saed Alqaraleh (Mutah University, Jordan; [ORCID](https://orcid.org/0000-0002-7146-3905)).
 The journal venue and article DOI remain pending. `CITATION.cff` identifies
-the prepared v1.0.1 source, whose Zenodo DOI will be assigned after publication.
+the updated v1.0.1 source; its Zenodo DOI will be added after archival.
 The following citation is for the **previously archived v1.0.0 software release**:
 
 ```bibtex

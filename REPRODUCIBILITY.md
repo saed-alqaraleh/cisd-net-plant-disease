@@ -1,7 +1,8 @@
 # Reproducing CISD-Net numerical results and regeneration
 
-**v1.0.1 preparation:** This source includes the manuscript v6 table and figure
-regeneration workflow; the version-specific Zenodo DOI is pending. The
+**Current source version: v1.0.1.** This release adds numerical table and figure
+regeneration, comparison against frozen results, and expanded implementation
+documentation. The version-specific Zenodo DOI is pending; the
 previous v1.0.0 archive remains immutable.
 
 **Citable frozen release:** [CISD-Net v1.0.0](https://github.com/saed-alqaraleh/cisd-net-plant-disease/releases/tag/v1.0.0)
@@ -10,9 +11,9 @@ For a precise replication of the archived software, check out the `v1.0.0`
 Git tag before executing the Tier 1 verification commands. Documentation
 updates made on `main` after publication do not change the tagged archive.
 
-## Regenerating tables and figures (manuscript v6)
+## Regenerating research tables and data figures
 
-From a fresh clone of this source branch, using Python 3.11:
+From the repository root, using Python 3.11:
 
 ```bash
 python -m pip install -r requirements-analysis.txt
@@ -65,7 +66,7 @@ ledger, recomputes Top-1, Macro-F1, clutter Q1–Q4, AURCC, nominal-0.05
 split-conformal coverage and mean set sizes, replay thresholds, selected
 gamma and the exact LAC/modulated set matrices. All 11 × 3 × 3 runs are
 included, and the full 33-row aggregate table is printed. FieldPlant
-FieldPlant partitions are disjoint by export file stem (`stem_group`);
+partitions are disjoint by export file stem (`stem_group`);
 this does not establish perceptual-duplicate separation.
 
 **Scope distinction:** HSIC, Stiefel overlap and learned view gates are
@@ -85,14 +86,14 @@ listed in `.gitignore`.
 python scripts/compute_bootstrap_ci.py --protocol P1 --baseline gem_linear_baseline --method cisd_net_single --seed 42
 ```
 
-This optional 10,000-resample percentile bootstrap is specified explicitly
-in the script. It is **not** claimed as the original manuscript's archived
-confidence-interval procedure, because the frozen 99-run ledger does not
-contain a matching bootstrap specification or stored CI endpoints.
+This optional 10,000-resample percentile bootstrap is an exploratory
+alternative. For the original reported confidence intervals and permutation
+tests, run `python analysis/recompute_v3.py`, which reproduces the paper's
+specified 20,000-resample paired procedure from the prediction archives.
 
-The v6 perceptual-hash audit identified 35 near-duplicate pairs, including
-19 cross-partition pairs affecting 10 FieldPlant test images. The v6
-conclusions persisted after excluding those images, as recorded in the
+The perceptual-hash audit identified 35 near-duplicate pairs, including
+19 cross-partition pairs affecting 10 FieldPlant test images. The
+reported conclusions persisted after excluding those images, as recorded in the
 supplied `analysis/numbers_v3.json`; reproducing the sensitivity analysis
 requires the optional earlier pHash manifest (see above).
 
