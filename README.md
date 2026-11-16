@@ -1,4 +1,4 @@
-# CISD-Net — Counterfactual Invariant Subspace Decomposition Network
+# CISD-Net: Closed-Form Orthogonal Pathology–Background Decomposition Eliminates Subspace Leakage in Field Plant Disease Recognition
 
 **Reproducible frozen-backbone experiments for plant disease recognition under background clutter**
 
@@ -164,7 +164,7 @@ See `CITATION.cff`. The software can be cited as:
 
 ```bibtex
 @software{cisdnet_2026,
-  title        = {CISD-Net: Counterfactual Invariant Subspace Decomposition Network},
+  title        = {CISD-Net: Closed-Form Orthogonal Pathology–Background Decomposition Eliminates Subspace Leakage in Field Plant Disease Recognition},
   author       = {Alqaraleh, Saed},
   year         = {2026},
   version      = {1.0.0},

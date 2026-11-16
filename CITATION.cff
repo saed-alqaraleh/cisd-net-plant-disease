@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "Please cite this software and the associated CISD-Net article once published."
-title: "CISD-Net: Counterfactual Invariant Subspace Decomposition Network"
+title: "CISD-Net: Closed-Form Orthogonal Pathology–Background Decomposition Eliminates Subspace Leakage in Field Plant Disease Recognition"
 version: "1.0.0"
 doi: "10.5281/zenodo.24263471"
 type: software
