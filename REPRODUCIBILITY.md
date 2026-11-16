@@ -6,6 +6,47 @@ For a precise replication of the archived software, check out the `v1.0.0`
 Git tag before executing the Tier 1 verification commands. Documentation
 updates made on `main` after publication do not change the tagged archive.
 
+## Regenerating tables and figures (manuscript v6)
+
+From a fresh clone of this source branch, using Python 3.11:
+
+```bash
+python -m pip install -r requirements-analysis.txt
+python analysis/recompute_v3.py
+python analysis/verify_reference.py
+```
+
+The original `analysis/recompute_v3.py` statistical computations are unchanged;
+only input/output paths have been adapted to the public repository. It reads the
+99 archived prediction NPZ files, the frozen run ledger under `results/`, and
+the two final split manifests under `manifests/`. No training or GPU is needed.
+It creates these output files under the git-ignored `outputs/` directory:
+
+- `outputs/manuscript/tables/`: `main_results.tex`, `geometry.tex`,
+  `paired_overall.tex`, `paired_quartile.tex`, `gates.tex`, `uncertainty.tex`.
+- `outputs/manuscript/figures/`: `fig2_accuracy_by_clutter.pdf/.png` and
+  `fig3_paired_differences.pdf/.png`.
+- `outputs/analysis/numbers_v3.json`: regenerated per-run summaries,
+  three-seed sample SDs, paired bootstrap intervals and p-values.
+
+`analysis/numbers_v3.json` is the original supplied numerical reference,
+not an input to the recomputation. The comparison checks all common numeric
+entries. With repository files alone, all 33 run summaries, 165 paired
+contrasts and 99 conformal-set replays match. The original reference also
+contains 11 **FPclean** paired contrasts and a FieldPlant perceptual-hash
+sensitivity analysis. To reproduce those additional findings, pass the earlier
+FieldPlant manifest containing `sha256` and `phash` as the optional argument:
+
+```bash
+python analysis/recompute_v3.py /path/to/earlier_fieldplant_manifest_with_phash.csv
+python analysis/verify_reference.py
+```
+
+That earlier pHash input is **not included** in the current repository.
+The numerical data underlying Table 1 (protocol counts) appear in the
+regenerated JSON; the supplied script generates LaTeX bodies for Tables 2–7
+and the data figures (Figures 2–3), rather than retypesetting Table 1.
+
 ## Tier 1 — CPU evidence replay (no images, GPU or network required)
 
 Python 3.11 is recommended.
