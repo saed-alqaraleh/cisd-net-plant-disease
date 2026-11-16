@@ -6,6 +6,47 @@ For a precise replication of the archived software, check out the `v1.0.0`
 Git tag before executing the Tier 1 verification commands. Documentation
 updates made on `main` after publication do not change the tagged archive.
 
+## Regenerating tables and figures (manuscript v6)
+
+From a fresh clone of this source branch, using Python 3.11:
+
+```bash
+python -m pip install -r requirements-analysis.txt
+python analysis/recompute_v3.py
+python analysis/verify_reference.py
+```
+
+The original `analysis/recompute_v3.py` statistical computations are unchanged;
+only input/output paths have been adapted to the public repository. It reads the
+99 archived prediction NPZ files, the frozen run ledger under `results/`, and
+the two final split manifests under `manifests/`. No training or GPU is needed.
+It creates these output files under the git-ignored `outputs/` directory:
+
+- `outputs/manuscript/tables/`: `main_results.tex`, `geometry.tex`,
+  `paired_overall.tex`, `paired_quartile.tex`, `gates.tex`, `uncertainty.tex`.
+- `outputs/manuscript/figures/`: `fig2_accuracy_by_clutter.pdf/.png` and
+  `fig3_paired_differences.pdf/.png`.
+- `outputs/analysis/numbers_v3.json`: regenerated per-run summaries,
+  three-seed sample SDs, paired bootstrap intervals and p-values.
+
+`analysis/numbers_v3.json` is the original supplied numerical reference,
+not an input to the recomputation. The comparison checks all common numeric
+entries. With repository files alone, all 33 run summaries, 165 paired
+contrasts and 99 conformal-set replays match. The original reference also
+contains 11 **FPclean** paired contrasts and a FieldPlant perceptual-hash
+sensitivity analysis. To reproduce those additional findings, pass the earlier
+FieldPlant manifest containing `sha256` and `phash` as the optional argument:
+
+```bash
+python analysis/recompute_v3.py /path/to/earlier_fieldplant_manifest_with_phash.csv
+python analysis/verify_reference.py
+```
+
+That earlier pHash input is **not included** in the current repository.
+The numerical data underlying Table 1 (protocol counts) appear in the
+regenerated JSON; the supplied script generates LaTeX bodies for Tables 2–7
+and the data figures (Figures 2–3), rather than retypesetting Table 1.
+
 ## Tier 1 — CPU evidence replay (no images, GPU or network required)
 
 Python 3.11 is recommended.
@@ -20,7 +61,8 @@ ledger, recomputes Top-1, Macro-F1, clutter Q1–Q4, AURCC, nominal-0.05
 split-conformal coverage and mean set sizes, replay thresholds, selected
 gamma and the exact LAC/modulated set matrices. All 11 × 3 × 3 runs are
 included, and the full 33-row aggregate table is printed. FieldPlant
-`stem_group` disjointness is also tested.
+FieldPlant partitions are disjoint by export file stem (`stem_group`);
+this does not establish perceptual-duplicate separation.
 
 **Scope distinction:** HSIC, Stiefel overlap and learned view gates are
 stored as scalars in the SHA-authenticated ledger, but the small prediction
@@ -43,6 +85,30 @@ This optional 10,000-resample percentile bootstrap is specified explicitly
 in the script. It is **not** claimed as the original manuscript's archived
 confidence-interval procedure, because the frozen 99-run ledger does not
 contain a matching bootstrap specification or stored CI endpoints.
+
+The v6 perceptual-hash audit identified 35 near-duplicate pairs, including
+19 cross-partition pairs affecting 10 FieldPlant test images. The v6
+conclusions persisted after excluding those images, as recorded in the
+supplied `analysis/numbers_v3.json`; reproducing the sensitivity analysis
+requires the optional earlier pHash manifest (see above).
+
+## Mathematical attribution and implementation details
+
+The joint frame uses the **Stiefel Cayley transform of Jauch, Hoff and
+Dunson (2020, *Bernoulli* 26(2):1560–1586,
+https://doi.org/10.3150/19-BEJ1176)**, rather than a newly invented
+Cayley transform. The largest measured cross-block overlap over all 36
+joint-frame runs is `2.0220069661553594e-15` (below `2.1e-15`).
+
+The classifier head is trained with **Adam (coupled L2 on W only)**;
+its `W` penalty is added to the loss and its gradient, not applied as
+separate decoupled decay. The background swap updates
+`h_swap = h + 0.5 * (delta_z_B @ U_B.T)`; background coordinates are moved
+toward a paired sample, not replaced. Each clutter probe minimises its own
+squared error plus a `1e-3` L2 term, whereas the frame receives the
+adversarial `L_B - L_P` gradient. The four-view GeM baseline uses exponent
+`2.25` after shifting each image's features by its minimum minus `1e-3`
+and adds the shift back afterward.
 
 ## Tier 2A — Regenerate experiment heads using verified frozen embeddings
 

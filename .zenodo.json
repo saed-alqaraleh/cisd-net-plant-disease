@@ -1,0 +1,20 @@
+{
+  "title": "CISD-Net: Closed-Form Orthogonal Pathology–Background Decomposition Eliminates Subspace Leakage in Field Plant Disease Recognition",
+  "creators": [
+    {
+      "name": "Alqaraleh, Saed",
+      "affiliation": "Department of Data Science and Artificial Intelligence, College of Information Technology, Mutah University, Jordan",
+      "orcid": "0000-0002-7146-3905"
+    }
+  ],
+  "description": "Research software and frozen numerical evidence for CISD-Net v6; journal article DOI pending. This metadata prepares a future v1.0.1 release; do not publish before approval.",
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": [
+    "plant disease recognition",
+    "orthogonal subspaces",
+    "Cayley transform",
+    "frozen foundation-model embeddings",
+    "reproducible research"
+  ]
+}

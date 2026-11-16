@@ -14,7 +14,8 @@ experiment ledger.
   calibrated empirical coverage, mean set size, quantile thresholds, and
   selected gamma match the archived ledger.
 - 33 configuration-level three-seed aggregate means and reported SDs match.
-- The FieldPlant split is group-disjoint by `stem_group` and the archived
+- The FieldPlant partitions are disjoint by export file stem (`stem_group`), not
+  by perceptual-duplicate identity; the archived
   PlantDoc in-domain split manifest contains 2,185 unique image IDs.
 - The frozen embedding cache is 75,604,736 bytes with SHA-256
   `736424459e298317ffb1f94838d45e7daad0ecb71f99d6f44ca54ad96c036205`.
@@ -26,6 +27,11 @@ experiment ledger.
 - A P1 CISD-Net single-stream seed-42 rerun reproduced the same five
   evaluation metrics exactly; Stiefel overlap and HSIC matched up to
   numerical floating-point variation.
+
+- The v6 perceptual-hash audit identified 35 near-duplicate pairs (19 crossing
+  partitions, affecting 10 test images). The reported sensitivity after
+  removing those images is archived in `analysis/numbers_v3.json` but cannot
+  be independently rerun without its optional earlier pHash input.
 
 ## Reproduction boundaries
 

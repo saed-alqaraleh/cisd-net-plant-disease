@@ -151,7 +151,7 @@ def replay():
                 x=np.array([r[metric] for r in rs])
                 assert_close(x.mean(),agg[fields[0]],f'{proto}/{config}/{fields[0]}')
                 if len(fields)==2: assert_close(x.std(),agg[fields[1]],f'{proto}/{config}/{fields[1]}')
-    # Manifest leakage checks: split membership and group-disjoint FP validation.
+    # Manifest leakage checks: split membership and FP export-file-stem disjointness.
     import csv
     with (ROOT/'manifests/fieldplant_FP_grouped_manifest.csv').open(newline='') as f: fp=list(csv.DictReader(f))
     assert len(fp)==1273
@@ -165,7 +165,7 @@ def replay():
     assert len({r['image_id'] for r in pd})==2185
     print('Evidence: 99/99 complete; 99/99 exact LAC + modulated conformal set replay')
     print('Ledgers: numeric Top-1/Macro-F1/Q1-Q4/AURCC, quantiles, coverage, sizes, means/SDs match')
-    print('Manifests: 2,185 PlantDoc images; 1,273 FieldPlant images; zero FP stem_group overlap')
+    print('Manifests: 2,185 PlantDoc images; 1,273 FieldPlant images; FP partitions disjoint by export file stem')
     print('Note: HSIC, orthogonality and checkpoint bytes require external trained-state evidence;')
     print('      their archived scalar values are retained in the authenticated ledger, not recalculated here.')
     print()

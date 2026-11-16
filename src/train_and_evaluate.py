@@ -43,10 +43,10 @@ CONFIRMED_HYPERPARAMETERS = {
     "backbone_stream1": "vit_base_patch14_dinov2.lvd142m (768-d, frozen)",
     "backbone_stream2": "convnext_tiny.fb_in1k (768-d, frozen)",
     "initialization": "strictly_neutral_random_seed_only (zero_planted_bases, zero_logit_projection)",
-    "optimizer": "AdamW",
-    "adamw_beta1": 0.9,
-    "adamw_beta2": 0.999,
-    "adamw_eps": 1e-8,
+    "optimizer": "Adam (coupled L2 on W only)",
+    "adam_beta1": 0.9,
+    "adam_beta2": 0.999,
+    "adam_eps": 1e-8,
     "lr_schedule": "cosine_annealing_with_15pct_floor",
     "epochs": 40,
     "lr_cls": 0.0015,
@@ -233,7 +233,7 @@ def extract_or_load_real_4view_embeddings(
 
 
 # ==============================================================================
-# 5. Stage 2: Build Leakage-Audited Split Protocols (P1, P2, FP)
+# 5. Stage 2: Build fixed split protocols (P1, P2, FP)
 # ==============================================================================
 
 def build_protocols_from_real_embeddings(
@@ -318,7 +318,7 @@ def build_protocols_from_real_embeddings(
     pd_in["clutter_score"] = clutter_all[pd_in_idx]
     pd_in.to_csv(manifests_dir / "plantdoc_P1_P2_manifest.csv", index=False)
 
-    # Protocol FP: FieldPlant v11 Group-Disjoint Split (1,273 images across 6 classes)
+    # Protocol FP: FieldPlant v11 partitions disjoint by export file stem (1,273 images, 5 classes)
     fp_in = fp_targets[fp_targets["primary"] == 1].copy().reset_index(drop=True)
     if "stem_group" in fp_inv_df.columns:
         fp_in = fp_in.merge(fp_inv_df[["sha256", "stem_group"]], on="sha256", how="left")
@@ -355,7 +355,7 @@ def build_protocols_from_real_embeddings(
     fp_in["clutter_score"] = clutter_all[fp_in_idx]
     fp_in.to_csv(manifests_dir / "fieldplant_FP_grouped_manifest.csv", index=False)
 
-    # Verify zero stem_group overlap across splits in FP
+    # Verify partitions are disjoint by export file stem; no pHash guarantee
     for s_a in ("train", "val", "cal", "test"):
         for s_b in ("train", "val", "cal", "test"):
             if s_a < s_b:
@@ -504,9 +504,9 @@ def train_and_eval_one_run_v3(
     lr_cls = CONFIRMED_HYPERPARAMETERS["lr_cls"]
     lr_sub = CONFIRMED_HYPERPARAMETERS["lr_sub"]
     lr_gate = CONFIRMED_HYPERPARAMETERS["lr_gate"]
-    beta1 = CONFIRMED_HYPERPARAMETERS["adamw_beta1"]
-    beta2 = CONFIRMED_HYPERPARAMETERS["adamw_beta2"]
-    eps_adam = CONFIRMED_HYPERPARAMETERS["adamw_eps"]
+    beta1 = CONFIRMED_HYPERPARAMETERS["adam_beta1"]
+    beta2 = CONFIRMED_HYPERPARAMETERS["adam_beta2"]
+    eps_adam = CONFIRMED_HYPERPARAMETERS["adam_eps"]
 
     m_state: Dict[str, np.ndarray] = {}
     v_state: Dict[str, np.ndarray] = {}
