@@ -31,3 +31,5 @@ jobs:
         run: python analysis/recompute_v3.py
       - name: Compare recomputed results to frozen reference
         run: python analysis/verify_reference.py
+      - name: Audit manuscript-to-repository alignment
+        run: python scripts/audit_manuscript_alignment.py

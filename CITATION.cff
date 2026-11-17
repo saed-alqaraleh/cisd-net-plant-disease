@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "CISD-Net research software v1.0.1. The version-specific Zenodo DOI and journal article DOI are pending."
-title: "CISD-Net: Closed-Form Orthogonal Pathology–Background Decomposition Eliminates Subspace Leakage in Field Plant Disease Recognition"
+message: "Please cite CISD-Net v1.0.1 research software. The new software archive DOI and journal article DOI are pending."
+title: "CISD-Net: Closed-Form Orthogonal Decomposition Eliminates Subspace Leakage in Field Plant Disease Recognition"
 version: "1.0.1"
 type: software
 repository-code: "https://github.com/saed-alqaraleh/cisd-net-plant-disease"

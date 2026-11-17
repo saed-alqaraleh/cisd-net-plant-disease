@@ -1,10 +1,10 @@
-# CISD-Net: Closed-Form Orthogonal Pathology–Background Decomposition Eliminates Subspace Leakage in Field Plant Disease Recognition
+# CISD-Net: Closed-Form Orthogonal Decomposition Eliminates Subspace Leakage in Field Plant Disease Recognition
 
 **Reproducible frozen-backbone experiments for plant disease recognition under background clutter**
 
 **Previously archived v1.0.0 release:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24263471.svg)](https://doi.org/10.5281/zenodo.24263471)
 
-**Current code version: v1.0.1.** This update extends numerical reproducibility and documentation without changing the models or reported results. Its version-specific Zenodo DOI will be added after archival.
+**Current source version: v1.0.1 (release archive pending).** The updated source and frozen numerical evidence support the accompanying paper. A new version-specific Zenodo DOI will be added after archival; the DOI shown above identifies only the earlier v1.0.0 release.
 
 CISD-Net is a research head trained on four 224×224 visual views extracted
 from PlantDoc and FieldPlant images. It combines a joint block-Cayley Stiefel
@@ -17,7 +17,8 @@ This research software includes 99 frozen evaluations (3 protocols ×
 manifests and a self-contained offline verification workflow. The numerical
 replay uses only repository files. Raw plant images, pretrained backbone
 weights, trained model checkpoints and the optional embedding cache are
-not distributed in the source repository.
+not distributed in the source repository. The annotated leaf box is required
+for crop and masked views at inference; detector error was not evaluated.
 
 ## Quick start: reproduce the archived numerical evidence
 
@@ -30,7 +31,19 @@ This verifies SHA-256 of the tracked release, all 99 full-precision
 prediction records and 99/99 conformal set agreement, reproduces all
 computable benchmark metrics and 3-seed aggregates, and checks FieldPlant
 export-file-stem separation. Requires no GPU, raw images or external data paths.
-See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for full details and limitations.
+For the paper's regenerated numerical tables and data figures, additionally run:
+
+```bash
+python -m pip install -r requirements-analysis.txt
+python analysis/recompute_v3.py
+python analysis/verify_reference.py
+python scripts/audit_manuscript_alignment.py
+```
+
+The two regenerated numerical plots correspond to manuscript **Figures 3–4**;
+the output file names retain their original `fig2_` and `fig3_` prefixes.
+See [the manuscript-to-code map](docs/PAPER_REPRODUCIBILITY_MAP.md) and
+[REPRODUCIBILITY.md](REPRODUCIBILITY.md) for exact output files and limitations.
 
 ## Experimental design
 
@@ -59,6 +72,19 @@ earlier manifest containing perceptual hashes, not included here.
 The score `clutter_raw` is measured from L2-normalized frozen DINOv2
 full-resize versus masked-resize embeddings. It is not a manually annotated
 background score.
+
+## Benchmark cohorts
+
+| Protocol | Source | Classes | Train | Validation | Calibration | Test |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| P1 | PlantDoc, official test preserved | 24 | 1,492 | 245 | 245 | 203 |
+| P2 | PlantDoc, class-stratified split | 24 | 1,528 | 219 | 219 | 219 |
+| FP | FieldPlant, disjoint by export file stem | 5 | 761 | 129 | 126 | 257 |
+
+The historical manifest column names `label_19` and `label_6` are
+schema identifiers, **not** the number of evaluation classes. The actual
+unique label counts are 24 and five. P1 and P2 draw from the same PlantDoc
+cohort, so they are not independent external benchmarks.
 
 ## Implementation details and attribution
 
@@ -92,12 +118,35 @@ with 75.21 ± 0.28% Top-1 and 64.05% high-clutter Q4 Top-1. It does **not**
 have the best overall Top-1 on P2 (cosine-prototype does) or FieldPlant
 (dual-stream concat does). This distinction is preserved in the full table.
 
+### Geometry and statistical dependence — manuscript Table 2
+
+Here **cross-block overlap** is the **maximum** `||U_P^T U_B||_F`
+over the three selected seed checkpoints. HSIC is the mean over seeds,
+displayed in units of `10^-3`, as in the manuscript.
+
+| Configuration | Overlap P1 | Overlap P2 | Overlap FP | HSIC P1 (×10⁻³) | HSIC P2 (×10⁻³) | HSIC FP (×10⁻³) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Subspace, unconstrained | 1.82 | 3.16 | 3.62 | 5.3 | 7.3 | 22.4 |
+| Subspace, decoupled QR | 2.08 | 2.47 | 1.83 | 19.4 | 19.5 | 24.8 |
+| Subspace, soft penalty | 0.21 | 0.44 | 0.33 | 2.5 | 4.0 | 5.9 |
+| Cayley, no swap | 1.7e-15 | 1.8e-15 | 1.5e-15 | 6.4 | 4.7 | 8.8 |
+| Cayley, no probe | 1.3e-15 | 1.2e-15 | 1.3e-15 | 3.8 | 3.3 | 7.6 |
+| CISD-Net-S | 1.7e-15 | 1.7e-15 | 1.5e-15 | 5.9 | 6.1 | 8.9 |
+| CISD-Net-D | 1.9e-15 | 1.8e-15 | 2.0e-15 | 3.5 | 2.7 | 7.1 |
+
+### Full numerical summary
+
+The 33-row table below retains additional archived metrics.
+Its cross-block overlap column gives the **mean over seeds**, not the
+maximum used in manuscript Table 2; HSIC values are in **raw units**,
+not multiplied by 1,000. Entries of 0 for baselines without subspaces
+are ledger placeholders (geometry is not applicable).
 The following numbers are mean ± sample SD (ddof=1) over three seeds (42, 108, 2026),
 from the archived prediction records (not the ledger's population-SD fields). Q1 and Q4 are mean accuracies by recorded
 clutter quartiles. HSIC/orthogonality values are archived scalar
 measurements (not inferable from the prediction NPZs alone).
 
-| Protocol | Configuration | Top-1 % | Macro-F1 % | Q1 % | Q4 % | LAC size (coverage) | Mod size (coverage) | AURCC % | Cross overlap | Raw HSIC |
+| Protocol | Configuration | Top-1 % | Macro-F1 % | Q1 % | Q4 % | LAC size (coverage) | Mod size (coverage) | AURCC % | Mean cross-block overlap | Raw HSIC |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | P1 | `erm_cls` | 73.89 ± 0.00 | 72.75 ± 0.00 | 78.43 | 60.78 | 3.48 (97.5%) | 3.48 (97.5%) | 9.32 | 0 | 0.0000 |
 | P1 | `gem_linear_baseline` | 74.38 ± 0.00 | 73.07 ± 0.00 | 80.39 | 56.86 | 2.59 (96.1%) | 2.59 (96.1%) | 8.37 | 0 | 0.0000 |
@@ -141,6 +190,10 @@ measurements (not inferable from the prediction NPZs alone).
 | `src/train_and_evaluate.py` | Original verified v3 run functions with sanitized local CLI |
 | `src/prepare_views.py` | Original 10%-crop and mask/letterbox view generation |
 | `scripts/verify_reproduction.py` | Integrity + 99-run CPU numerical replay |
+| `scripts/audit_manuscript_alignment.py` | Checks title, author, protocol counts, geometry and headline statistical results |
+| `analysis/recompute_v3.py` | Recreates six LaTeX tables and two numerical plots from frozen evidence |
+| `analysis/verify_reference.py` | Compares regenerated statistics with the original reference |
+| `docs/PAPER_REPRODUCIBILITY_MAP.md` | Maps the manuscript's tables and figures to source files |
 | `scripts/compute_bootstrap_ci.py` | Optional explicitly defined paired bootstrap |
 | `scripts/stage_local_inputs.py` | Stage frozen source metadata under local `data/` |
 | `manifests/` | Two final split manifests, mapping decisions, source traceability records |
@@ -160,18 +213,18 @@ licensable, excluding upstream third-party rights. See [LICENSE](LICENSE),
 
 ## Citation
 
-**Sole author:** Saed Alqaraleh (Mutah University, Jordan; [ORCID](https://orcid.org/0000-0002-7146-3905)).
+**Sole author:** Saed Alqaraleh (Department of Data Science and Artificial Intelligence, Mutah University, Jordan; [ORCID](https://orcid.org/0000-0002-7146-3905)).
 The journal venue and article DOI remain pending. `CITATION.cff` identifies
 the updated v1.0.1 source; its Zenodo DOI will be added after archival.
-The following citation is for the **previously archived v1.0.0 software release**:
+The following citation is for the **updated v1.0.1 source**;
+its version-specific software DOI will be added after Zenodo archival:
 
 ```bibtex
 @software{cisdnet_2026,
-  title        = {CISD-Net: Closed-Form Orthogonal Pathology–Background Decomposition Eliminates Subspace Leakage in Field Plant Disease Recognition},
+  title        = {CISD-Net: Closed-Form Orthogonal Decomposition Eliminates Subspace Leakage in Field Plant Disease Recognition},
   author       = {Alqaraleh, Saed},
   year         = {2026},
-  version      = {1.0.0},
-  doi          = {10.5281/zenodo.24263471},
+  version      = {1.0.1},
   url          = {https://github.com/saed-alqaraleh/cisd-net-plant-disease}
 }
 ```

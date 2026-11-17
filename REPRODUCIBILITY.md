@@ -7,9 +7,11 @@ previous v1.0.0 archive remains immutable.
 
 **Citable frozen release:** [CISD-Net v1.0.0](https://github.com/saed-alqaraleh/cisd-net-plant-disease/releases/tag/v1.0.0)
 (software DOI: [10.5281/zenodo.24263471](https://doi.org/10.5281/zenodo.24263471)).
-For a precise replication of the archived software, check out the `v1.0.0`
-Git tag before executing the Tier 1 verification commands. Documentation
-updates made on `main` after publication do not change the tagged archive.
+**Release lineage:** v1.0.0 is an immutable earlier software archive and does
+not contain the present table/figure regeneration workflow. The commands
+below apply to the updated source and the forthcoming v1.0.1 archive. Do not
+cite the v1.0.0 DOI as an archive of the newer source. Use the new
+version-specific DOI after it becomes available.
 
 ## Regenerating research tables and data figures
 
@@ -48,9 +50,13 @@ python analysis/verify_reference.py
 ```
 
 That earlier pHash input is **not included** in the current repository.
-The numerical data underlying Table 1 (protocol counts) appear in the
-regenerated JSON; the supplied script generates LaTeX bodies for Tables 2–7
-and the data figures (Figures 2–3), rather than retypesetting Table 1.
+The numerical data underlying manuscript Table 1 appear in the frozen CSV
+manifests and regenerated JSON. The script generates LaTeX bodies for
+**Tables 2–7** and numerical plots for **Figures 3–4**. The historical
+output filenames begin with `fig2_` and `fig3_`, respectively. Figure 1 is
+the research teaser and Figure 2 is the LaTeX method diagram; neither
+is reconstructed from the archived prediction records. See
+[the manuscript map](docs/PAPER_REPRODUCIBILITY_MAP.md).
 
 ## Tier 1 — CPU evidence replay (no images, GPU or network required)
 
@@ -75,6 +81,11 @@ archives do not contain the learned subspace matrices or per-example
 projected embeddings. Those scalars cannot be independently recomputed from
 this Tier 1 bundle. Likewise, original checkpoint files are not included.
 Do not describe Tier 1 as verifying those quantities from first principles.
+
+Run `python scripts/audit_manuscript_alignment.py` to cross-check the
+manuscript's protocol counts, headline effect estimates, geometry and citation
+metadata against the frozen evidence. This check is separate from GPU model
+training and the independent statistical regeneration workflow.
 
 The checksum manifest contains all files except itself, since a file cannot
 meaningfully contain its own SHA-256 digest. Excluded local directories are
@@ -125,8 +136,11 @@ python -m pip install -r requirements.txt
 python scripts/stage_local_inputs.py --data-root ./data
 ```
 
-Acquire the original `real_4view_backbone_embeddings_v3.npz` from the
-study's shared frozen-data distribution (75,604,736 bytes). The original
+The frozen `real_4view_backbone_embeddings_v3.npz` is **not distributed
+in this public repository** (75,604,736 bytes). It must be reconstructed
+from appropriately licensed upstream images and weights, or separately
+obtained with authorization. A full independent GPU rerun is not claimed
+as part of the published CPU verification workflow. The original
 SHA-256 is:
 
 ```
@@ -177,7 +191,7 @@ against the original source data, code and recorded hashes.
 
 GitHub warns when tracked files exceed 50 MB; this research cache is kept
 outside the Git tree and is **not required for the CPU evidence replay**.
-The cache is not included in the initial source release. Its redistribution
+The cache is not included in the public source release. Its redistribution
 is subject to clearance of the applicable third-party image/model terms.
 If an independently authorized copy is distributed later, verify its exact
 SHA-256 (above) before use. Without the cache, regenerate features using

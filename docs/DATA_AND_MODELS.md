@@ -50,6 +50,8 @@ contains all 3,721 target rows before the PlantDoc in-domain restriction.
 
 This repository releases original scientific software and research evaluation
 records; it does **not** redistribute third-party raw images or pretrained
-weights. The optional 75.6 MB frozen embedding cache is not included in the
-initial source release pending redistribution review. The published CPU
-verification pathway is fully usable without this cache.
+weights. The optional 75.6 MB frozen embedding cache is **not included in the
+public source archive** while redistribution rights are unresolved. It is
+not needed for the archived numerical replay. Recreating it from the upstream
+images and official model weights is a distinct GPU workflow, with provenance
+and limitations documented in `REPRODUCIBILITY.md`.
