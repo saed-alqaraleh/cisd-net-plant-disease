@@ -1,17 +1,17 @@
 # Reproducing CISD-Net numerical results and regeneration
 
-**Current source version: v1.0.1.** This release adds numerical table and figure
-regeneration, comparison against frozen results, and expanded implementation
-documentation. The version-specific Zenodo DOI is pending; the
-previous v1.0.0 archive remains immutable.
+**Latest archived software version: [v1.0.1](https://github.com/saed-alqaraleh/cisd-net-plant-disease/releases/tag/v1.0.1).**
+The version-specific Zenodo DOI is
+[10.5281/zenodo.24303980](https://doi.org/10.5281/zenodo.24303980).
+This release adds numerical table and figure regeneration, comparison against
+frozen results, and expanded implementation documentation.
 
-**Citable frozen release:** [CISD-Net v1.0.0](https://github.com/saed-alqaraleh/cisd-net-plant-disease/releases/tag/v1.0.0)
-(software DOI: [10.5281/zenodo.24263471](https://doi.org/10.5281/zenodo.24263471)).
-**Release lineage:** v1.0.0 is an immutable earlier software archive and does
-not contain the present table/figure regeneration workflow. The commands
-below apply to the updated source and the forthcoming v1.0.1 archive. Do not
-cite the v1.0.0 DOI as an archive of the newer source. Use the new
-version-specific DOI after it becomes available.
+**Release lineage:** The earlier immutable
+[v1.0.0 release](https://github.com/saed-alqaraleh/cisd-net-plant-disease/releases/tag/v1.0.0)
+is archived under
+[10.5281/zenodo.24263471](https://doi.org/10.5281/zenodo.24263471).
+It does not contain the current table/figure regeneration workflow. The commands
+below apply to v1.0.1. Use the **v1.0.1 DOI** when citing this updated package.
 
 ## Regenerating research tables and data figures
 

@@ -2,9 +2,9 @@
 
 **Reproducible frozen-backbone experiments for plant disease recognition under background clutter**
 
-**Previously archived v1.0.0 release:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24263471.svg)](https://doi.org/10.5281/zenodo.24263471)
+**Latest release: [v1.0.1 — Reproducibility Release](https://github.com/saed-alqaraleh/cisd-net-plant-disease/releases/tag/v1.0.1)** [![Zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24303980.svg)](https://doi.org/10.5281/zenodo.24303980)
 
-**Current source version: v1.0.1 (release archive pending).** The updated source and frozen numerical evidence support the accompanying paper. A new version-specific Zenodo DOI will be added after archival; the DOI shown above identifies only the earlier v1.0.0 release.
+**Version-specific DOI: [10.5281/zenodo.24303980](https://doi.org/10.5281/zenodo.24303980).** This archived software release contains the 99 frozen prediction records, analysis regeneration, and numerical verification resources used for the accompanying paper. The previous v1.0.0 software archive remains available in the release history.
 
 CISD-Net is a research head trained on four 224×224 visual views extracted
 from PlantDoc and FieldPlant images. It combines a joint block-Cayley Stiefel
@@ -214,10 +214,11 @@ licensable, excluding upstream third-party rights. See [LICENSE](LICENSE),
 ## Citation
 
 **Sole author:** Saed Alqaraleh (Department of Data Science and Artificial Intelligence, Mutah University, Jordan; [ORCID](https://orcid.org/0000-0002-7146-3905)).
-The journal venue and article DOI remain pending. `CITATION.cff` identifies
-the updated v1.0.1 source; its Zenodo DOI will be added after archival.
-The following citation is for the **updated v1.0.1 source**;
-its version-specific software DOI will be added after Zenodo archival:
+The journal article DOI remains pending. The software release **v1.0.1**
+is permanently archived under DOI
+[10.5281/zenodo.24303980](https://doi.org/10.5281/zenodo.24303980).
+`CITATION.cff` provides the same title, sole author, version, and DOI.
+Cite the following **current software release**:
 
 ```bibtex
 @software{cisdnet_2026,
@@ -225,12 +226,13 @@ its version-specific software DOI will be added after Zenodo archival:
   author       = {Alqaraleh, Saed},
   year         = {2026},
   version      = {1.0.1},
-  url          = {https://github.com/saed-alqaraleh/cisd-net-plant-disease}
+  doi          = {10.5281/zenodo.24303980},
+  url          = {https://github.com/saed-alqaraleh/cisd-net-plant-disease/releases/tag/v1.0.1}
 }
 ```
 
-The immutable `v1.0.0` software snapshot is archived on Zenodo under
+**Release history:** The original `v1.0.0` snapshot remains archived under
 [DOI: 10.5281/zenodo.24263471](https://doi.org/10.5281/zenodo.24263471).
-The journal article DOI will be added separately after publication.
-The `v1.0.0` Git tag fixes the released source and numerical evidence;
-subsequent documentation improvements on `main` do not alter that archive.
+This older DOI must not be used to cite the updated v1.0.1 reproducibility
+package. Post-publication citation updates on `main` do not change either
+tagged software archive. The journal article DOI will be added when available.

@@ -1,7 +1,8 @@
 cff-version: 1.2.0
-message: "Please cite CISD-Net v1.0.1 research software. The new software archive DOI and journal article DOI are pending."
+message: "Please cite the CISD-Net v1.0.1 research software using its version-specific Zenodo DOI. The journal article DOI is pending."
 title: "CISD-Net: Closed-Form Orthogonal Decomposition Eliminates Subspace Leakage in Field Plant Disease Recognition"
 version: "1.0.1"
+doi: "10.5281/zenodo.24303980"
 type: software
 repository-code: "https://github.com/saed-alqaraleh/cisd-net-plant-disease"
 license: MIT

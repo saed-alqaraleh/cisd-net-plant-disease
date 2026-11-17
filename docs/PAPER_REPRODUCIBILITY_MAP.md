@@ -3,9 +3,11 @@
 **Article:** CISD-Net: Closed-Form Orthogonal Decomposition Eliminates Subspace Leakage in Field Plant Disease Recognition
 
 **Author:** Saed Alqaraleh (sole author). The journal article DOI is pending.
-The earlier software DOI (10.5281/zenodo.24263471) archives **v1.0.0
-only**. A new version-specific DOI for the updated source will be recorded
-here when that release is archived.
+The current v1.0.1 software release is archived under
+[DOI: 10.5281/zenodo.24303980](https://doi.org/10.5281/zenodo.24303980).
+The earlier DOI
+[10.5281/zenodo.24263471](https://doi.org/10.5281/zenodo.24263471)
+refers to the historical v1.0.0 archive only.
 
 ## Exact numerical reproduction
 
